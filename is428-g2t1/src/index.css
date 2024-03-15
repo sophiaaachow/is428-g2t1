@@ -1,0 +1,34 @@
+.mainBg {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+}
+
+.footer {
+    width: 100%;
+    color: white;
+    background-color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 10px;
+}
+
+.parentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.childContainer {
+    width: 50%;
+    height: 50%;
+}
+
+.spotifyGreen {
+    color: 	#1DB954;
+}
+
+.spotifyGreenBg {
+    background-color: 	#1DB954;
+    color: black;
+}
