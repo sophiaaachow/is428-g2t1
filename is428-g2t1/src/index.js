@@ -7,6 +7,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './pages/Home';
 import About from './pages/About';
+import AudioFeatures from './pages/AudioFeatures';
+import GenderEthnicity from './pages/GenderEthnicity';
+import TimeSeries from './pages/TimeSeries';
+import Analysis from './pages/Analysis';
 import Error from './pages/Error';
 
 import reportWebVitals from './reportWebVitals';
@@ -25,22 +29,22 @@ const router = createBrowserRouter([
   },
   {
     path: '/audio-features',
-    element: <Home />,
+    element: <AudioFeatures />,
     errorElement: <Error />,
   },
   {
     path: '/gender-and-ethnicity',
-    element: <Home />,
+    element: <GenderEthnicity />,
     errorElement: <Error />,
   },
   {
     path: '/time-series',
-    element: <Home />,
+    element: <TimeSeries />,
     errorElement: <Error />,
   },
   {
     path: '/analysis',
-    element: <Home />,
+    element: <Analysis />,
     errorElement: <Error />,
   }
 ]);
