@@ -3,7 +3,7 @@ import * as d3 from "d3"
 
 import spotifyCsv from '../spotify.csv'
 
-function GenderByYear() {
+function GenderDistribution() {
     const [data, setData] = useState([])
 
     const getData = async () => {
@@ -19,30 +19,31 @@ function GenderByYear() {
 
     const drawChart = () => {
         var margin = {top: 30, right: 50, bottom: 50, left: 50},
-            width = 1000 - margin.left - margin.right,
+            width = 600 - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
 
-        var svg = d3.select("#genderByYear")
+        var svg = d3.select("#genderDistribution")
             .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
             .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var rollup = d3.rollup(data, D => D.length, d => d.gender, d => d.year)
+        var rollup = d3.rollup(data, D => D.length, d => d.gender)
+        rollup = new Map([...rollup.entries()].sort((a, b) => b[1] - a[1]));
 
-        var x = d3.scaleTime()
-            .domain(d3.extent(data, d => new Date(d.year)))
+        var x = d3.scaleBand()
+            .domain(d3.range(rollup.size))
+            .padding(0.1)
             .range([ 0, width ])
 
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x)
-                .ticks(d3.timeYear.every(1))
-                .tickFormat(d3.timeFormat("%Y")))
+                .tickFormat((d, i) => Array.from(rollup.keys())[i]))
 
         var y = d3.scaleLinear()
-            .domain([0, d3.max(Array.from(rollup.values()), d => d3.max(d.values()))]).nice()
+            .domain([0, d3.max(Array.from(rollup.values()))]).nice()
             .range([ height, 0 ])
 
         svg.append("g")
@@ -59,17 +60,14 @@ function GenderByYear() {
                 .style("stroke-dasharray", "3 3");
         
         svg.append("g")
-            .selectAll(".line-path")
-            .data(Array.from(rollup.values()))
-            .enter()
-            .append("path")
-                .attr("fill", "none")
-                .attr("stroke", "white")
-                .attr("stroke-width", 1.5)
-                .attr("d", (() => {}), function(d) {d3.line()
-                    .x(x((f, i) => Array.from(d.keys())[i]))
-                    .y(y((f, i) => Array.from(d.values())[i]))
-                })
+            .attr('fill', '#1DB954')
+            .selectAll('rect')
+            .data(rollup)
+            .join('rect')
+                .attr('x', (d, i) => x(i))
+                .attr('y', (d, i) => y(Array.from(rollup.values())[i]))
+                .attr('height', (d, i) => y(0) - y(Array.from(rollup.values())[i]))
+                .attr('width', x.bandwidth())
 
         svg.append("text")
             .attr("x", -margin.left)
@@ -87,18 +85,18 @@ function GenderByYear() {
             .style("fill", "white")
             .style("font-family", "sans-serif")
             .attr("dy", "1em")
-            .text("Year");
+            .text("Key");
 
-        // svg.selectAll(".label")
-        //     .data(rollup)
-        //     .enter().append("text")
-        //     .attr("x", (d, i) => x(i) + x.bandwidth() / 2)
-        //     .attr("y", (d, i) => y(Array.from(rollup.values())[i]) - 5)
-        //     .style("text-anchor", "middle")
-        //     .style("font-family", "sans-serif")
-        //     .style("font-size", "10px")
-        //     .style('fill', 'white')
-        //     .text((d, i) => Array.from(rollup.values())[i]);
+        svg.selectAll(".label")
+            .data(rollup)
+            .enter().append("text")
+            .attr("x", (d, i) => x(i) + x.bandwidth() / 2)
+            .attr("y", (d, i) => y(Array.from(rollup.values())[i]) - 5)
+            .style("text-anchor", "middle")
+            .style("font-family", "sans-serif")
+            .style("font-size", "10px")
+            .style('fill', 'white')
+            .text((d, i) => Array.from(rollup.values())[i]);
     }
 
     useEffect(() => {
@@ -111,10 +109,10 @@ function GenderByYear() {
 
     return (
         <>
-            <h5>Annual Distribution of Songs by Artist's Gender</h5>
-            <div id="genderByYear"></div>
+            <h5>Distribution of Artist Gender</h5>
+            <div id="genderDistribution"></div>
         </>
     );
 }
 
-export default GenderByYear;
+export default GenderDistribution;

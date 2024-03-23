@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import GenderByYear from '../components/GenderByYear'
+import GenderByYear from '../components/GenderByYear';
 
 function TimeSeries() {
     return (
