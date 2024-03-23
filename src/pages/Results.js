@@ -68,7 +68,7 @@ function Results() {
                     </Col>
                     <Col className='text-center'>
                         <h3 className='spotifyGreen'>We created a song using our results!</h3>
-                        <p className='mb-4'>Do you think it will make it to the Spotify's Top 100?</p>
+                        <p className='mb-4'>Do you think it will make it to Spotify's Top 100?</p>
                         <div className='d-flex justify-content-center'>
                             <audio controls>
                                 <source src={ourSong} type="audio/mpeg" />
