@@ -3,7 +3,7 @@ import * as d3 from "d3"
 
 import spotifyCsv from '../../spotify.csv'
 
-function AcousticnessDistribution() {
+function LivenessDistribution() {
     const [data, setData] = useState([])
 
     const getData = async () => {
@@ -23,7 +23,7 @@ function AcousticnessDistribution() {
                 width = 600 - margin.left - margin.right,
                 height = 400 - margin.top - margin.bottom;
     
-            var svg = d3.select("#acousticnessDistribution")
+            var svg = d3.select("#livenessDistribution")
                 .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
@@ -31,7 +31,7 @@ function AcousticnessDistribution() {
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             var x = d3.scaleLinear()
-                .domain([0, d3.max(data, function(d) { return +d.acousticness })]).nice()
+                .domain([0, d3.max(data, function(d) { return +d.liveness })]).nice()
                 .range([0, width]);
 
             svg.append("g")
@@ -39,7 +39,7 @@ function AcousticnessDistribution() {
                 .call(d3.axisBottom(x));
 
             var histogram = d3.histogram()
-                .value(function(d) { return d.acousticness; })
+                .value(function(d) { return d.liveness; })
                 .domain(x.domain())
                 .thresholds(x.ticks(10))
 
@@ -78,7 +78,7 @@ function AcousticnessDistribution() {
                 .style("fill", "white")
                 .style("font-family", "sans-serif")
                 .attr("dy", "1em")
-                .text("Acousticness");
+                .text("Liveness");
 
             function onMouseOver() {
                 d3.select(this).attr('fill', '#EBF4CF')
@@ -111,11 +111,11 @@ function AcousticnessDistribution() {
 
     return (
         <>
-            <h5 className='spotifyGreen'>Distribution of Acousticness of Songs</h5>
-            <p>A confidence measure from 0 to 100 of whether the track is acoustic. 100 represents high confidence the track is acoustic.</p>
-            <div id="acousticnessDistribution"></div>
+            <h5 className='spotifyGreen'>Distribution of Liveness of Songs</h5>
+            <p>Presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 80 provides strong likelihood that the track is live.</p>
+            <div id="livenessDistribution"></div>
         </>
     );
 }
 
-export default AcousticnessDistribution;
+export default LivenessDistribution;

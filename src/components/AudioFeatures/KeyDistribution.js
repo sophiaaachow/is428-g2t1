@@ -59,16 +59,31 @@ function KeyDistribution() {
                     .style("opacity", 0.5)
                     .style("stroke-width", 0.5)
                     .style("stroke-dasharray", "3 3");
+
+            function onMouseOver() {
+                d3.select(this).attr('fill', '#EBF4CF')
+        
+            }
+
+            function onMouseOut() {
+                d3.select(this).attr('fill', '#1DB954')
+            }
             
             svg.append("g")
                 .attr('fill', '#1DB954')
                 .selectAll('rect')
                 .data(rollup)
                 .join('rect')
+                    .on("mouseover", onMouseOver)
+                    .on("mouseout", onMouseOut)
                     .attr('x', (d, i) => x(i))
                     .attr('y', (d, i) => y(Array.from(rollup.values())[i]))
-                    .attr('height', (d, i) => y(0) - y(Array.from(rollup.values())[i]))
                     .attr('width', x.bandwidth())
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(500)
+                    .delay((d, i) => i * 50)
+                    .attr('height', (d, i) => y(0) - y(Array.from(rollup.values())[i]))
     
             svg.append("text")
                 .attr("x", -margin.left)

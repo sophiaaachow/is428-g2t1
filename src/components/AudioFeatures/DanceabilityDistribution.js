@@ -80,15 +80,30 @@ function DanceabilityDistribution() {
                 .attr("dy", "1em")
                 .text("Danceability");
 
+            function onMouseOver() {
+                d3.select(this).attr('fill', '#EBF4CF')
+        
+            }
+
+            function onMouseOut() {
+                d3.select(this).attr('fill', '#1DB954')
+            }
+
             svg.selectAll("rect")
                 .data(bins)
                 .enter()
                 .append("rect")
+                .on("mouseover", onMouseOver)
+                .on("mouseout", onMouseOut)
                 .attr("x", 1)
                 .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
                 .attr("width", function(d) { return x(d.x1) - x(d.x0) - 1 ; })
+                .transition()
+                .ease(d3.easeLinear)
+                .duration(500)
+                .delay((d, i) => i * 50)
                 .attr("height", function(d) { return height - y(d.length); })
-                .style("fill", '#1DB954')
+                .attr("fill", '#1DB954')
         } else {
             getData()
         }

@@ -3,7 +3,7 @@ import * as d3 from "d3"
 
 import spotifyCsv from '../../spotify.csv'
 
-function ModeDistribution() {
+function EthnicityDistribution() {
     const [data, setData] = useState([])
 
     const getData = async () => {
@@ -11,7 +11,13 @@ function ModeDistribution() {
         await d3.csv(spotifyCsv,
             (() => {}),
             function(d) {
-                tempData.push(d)
+                let ethList = ['White', 'Black', 'Hispanic', 'Asian', 'Multiracial', 'Other']
+                let formatEth = d['ethnicity'].split(" ")[0]
+                if (!ethList.includes(formatEth)) {
+                    formatEth = 'Other'
+                }
+                console.log(formatEth)
+                tempData.push({'ethnicity': formatEth})
             }
         )
         setData(tempData)
@@ -23,14 +29,14 @@ function ModeDistribution() {
             width = 600 - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
 
-            var svg = d3.select("#modeDistribution")
+            var svg = d3.select("#ethnicityDistribution")
                 .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-            var rollup = d3.rollup(data, D => D.length, d => d.mode)
+            var rollup = d3.rollup(data, D => D.length, d => d.ethnicity)
             rollup = new Map([...rollup.entries()].sort((a, b) => b[1] - a[1]));
 
             var x = d3.scaleBand()
@@ -101,7 +107,7 @@ function ModeDistribution() {
                 .style("fill", "white")
                 .style("font-family", "sans-serif")
                 .attr("dy", "1em")
-                .text("Mode");
+                .text("Ethnicity");
 
             svg.selectAll(".label")
                 .data(rollup)
@@ -120,11 +126,11 @@ function ModeDistribution() {
 
     return (
         <>
-            <h5 className='spotifyGreen'>Distribution of Mode Used in Songs</h5>
-            <p>The type of scale from which a track's melodic content is derived.</p>
-            <div id="modeDistribution"></div>
+            <h5 className='spotifyGreen'>Distribution of Artist Ethnicity</h5>
+            <p>The ethnicity of the main artist of the track.</p>
+            <div id="ethnicityDistribution"></div>
         </>
     );
 }
 
-export default ModeDistribution;
+export default EthnicityDistribution;

@@ -3,7 +3,7 @@ import * as d3 from "d3"
 
 import spotifyCsv from '../../spotify.csv'
 
-function AcousticnessDistribution() {
+function InstrumentalnessDistribution() {
     const [data, setData] = useState([])
 
     const getData = async () => {
@@ -23,7 +23,7 @@ function AcousticnessDistribution() {
                 width = 600 - margin.left - margin.right,
                 height = 400 - margin.top - margin.bottom;
     
-            var svg = d3.select("#acousticnessDistribution")
+            var svg = d3.select("#instrumentalnessDistribution")
                 .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
@@ -31,7 +31,7 @@ function AcousticnessDistribution() {
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             var x = d3.scaleLinear()
-                .domain([0, d3.max(data, function(d) { return +d.acousticness })]).nice()
+                .domain([0, d3.max(data, function(d) { return +d.instrumentalness })]).nice()
                 .range([0, width]);
 
             svg.append("g")
@@ -39,7 +39,7 @@ function AcousticnessDistribution() {
                 .call(d3.axisBottom(x));
 
             var histogram = d3.histogram()
-                .value(function(d) { return d.acousticness; })
+                .value(function(d) { return d.instrumentalness; })
                 .domain(x.domain())
                 .thresholds(x.ticks(10))
 
@@ -78,7 +78,7 @@ function AcousticnessDistribution() {
                 .style("fill", "white")
                 .style("font-family", "sans-serif")
                 .attr("dy", "1em")
-                .text("Acousticness");
+                .text("Instrumentalness");
 
             function onMouseOver() {
                 d3.select(this).attr('fill', '#EBF4CF')
@@ -111,11 +111,11 @@ function AcousticnessDistribution() {
 
     return (
         <>
-            <h5 className='spotifyGreen'>Distribution of Acousticness of Songs</h5>
-            <p>A confidence measure from 0 to 100 of whether the track is acoustic. 100 represents high confidence the track is acoustic.</p>
-            <div id="acousticnessDistribution"></div>
+            <h5 className='spotifyGreen'>Distribution of Instrumentalness of Songs</h5>
+            <p>The closer instrumentalness is to 100, the greater likelihood the track contains no vocal content. Values above 50 are intended to represent instrumental tracks.</p>
+            <div id="instrumentalnessDistribution"></div>
         </>
     );
 }
 
-export default AcousticnessDistribution;
+export default InstrumentalnessDistribution;
