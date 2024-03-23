@@ -18,7 +18,7 @@ function About() {
                     <Col>
                         <TypeAnimation
                             sequence={[
-                                'Music has become an integral part of our daily lives.',
+                                'Music is an integral part of our lives.',
                             ]}
                             wrapper='h1'
                             speed={50}
@@ -37,8 +37,8 @@ function About() {
                                     preserveAspectRatio: "xMidYMid slice"
                                 }
                             }}
-                            height={300}
-                            width={300}
+                            height={250}
+                            width={250}
                         />
                     </Col>
                 </Row>

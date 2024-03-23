@@ -104,6 +104,18 @@ function EnergyDistribution() {
                 .delay((d, i) => i * 50)
                 .attr("height", function(d) { return height - y(d.length); })
                 .attr("fill", '#1DB954')
+
+
+            svg.selectAll(".label")
+                .data(bins)
+                .enter().append("text")
+                .attr("x", d => x(d.x0) + (x(d.x1) - x(d.x0)) / 2)
+                .attr("y", d => y(d.length) - 5)
+                .style("text-anchor", "middle")
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .style('fill', 'white')
+                .text(d => d.length);
         } else {
             getData()
         }
