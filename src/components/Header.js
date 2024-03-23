@@ -18,12 +18,12 @@ function Header() {
             <Navbar.Collapse>
                 <Nav>
                     <Nav.Link href="/about" className='text-white'>About</Nav.Link>
-                    <NavDropdown title={<span className="text-white">Dashboards</span>} data-bs-theme="dark">
+                    <NavDropdown title={<span className="text-white">Charts</span>} data-bs-theme="dark">
                         <NavDropdown.Item href="/audio-features">Audio Features</NavDropdown.Item>
                         <NavDropdown.Item href="/gender-and-ethnicity">Gender & Ethnicity</NavDropdown.Item>
                         <NavDropdown.Item href="/time-series">Time Series</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link href="/analysis" className='text-white'>Analysis</Nav.Link>
+                    <Nav.Link href="/results" className='text-white'>Results</Nav.Link>
                 </Nav>
                 <OverlayTrigger placement='bottom' overlay={<Tooltip>View Repository</Tooltip>}>
                     <Nav.Link href="https://github.com/sophiaaachow/is428-g2t1" target='_blank' className='ms-auto'>

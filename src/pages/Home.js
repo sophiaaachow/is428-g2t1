@@ -32,7 +32,7 @@ function Home() {
                 <div style={{width: '500px'}}>
                   <h4>This project aims to unravel the complexities behind chart-toppers on Spotify, shedding light on the multifaceted dynamics driving music trends in the digital age we live in today.</h4>
                   <hr className='my-5' />
-                  <h4>View Our Dashboards</h4>
+                  <h4>View Our Charts</h4>
                   <div className="d-grid gap-3 mt-4">
                     <Button variant="dark" size="lg" href='/audio-features'>
                       Audio Features

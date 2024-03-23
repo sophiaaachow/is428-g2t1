@@ -10,7 +10,7 @@ import About from './pages/About';
 import AudioFeatures from './pages/AudioFeatures';
 import GenderEthnicity from './pages/GenderEthnicity';
 import TimeSeries from './pages/TimeSeries';
-import Analysis from './pages/Analysis';
+import Results from './pages/Results';
 import Error from './pages/Error';
 
 import reportWebVitals from './reportWebVitals';
@@ -43,8 +43,8 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: '/analysis',
-    element: <Analysis />,
+    path: '/results',
+    element: <Results />,
     errorElement: <Error />,
   }
 ]);
