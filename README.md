@@ -11,4 +11,4 @@ Visit the website [here](https://github.com/sophiaaachow/is428-g2t1).
 
 <hr />
 
-*Created by IS428 G2T1.*
+*&copy; SMU AY2023/24 T2 IS428 G2T1.*
