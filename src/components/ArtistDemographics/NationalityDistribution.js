@@ -3,7 +3,7 @@ import * as d3 from "d3"
 
 import spotifyCsv from '../../spotify.csv'
 
-function EthnicityDistribution() {
+function NationalityDistribution() {
     const [data, setData] = useState([])
 
     const getData = async () => {
@@ -11,12 +11,18 @@ function EthnicityDistribution() {
         await d3.csv(spotifyCsv,
             (() => {}),
             function(d) {
-                let ethList = ['White', 'Black', 'Hispanic', 'Asian', 'Multiracial', 'Other']
-                let formatEth = d['ethnicity'].split(" ")[0]
-                if (!ethList.includes(formatEth)) {
-                    formatEth = 'Other'
+                let natList = ['American', 'British', 'Canadian', 'Puerto Rican', 'Australian', 'Swedish', 'Scottish', 'Colombian']
+                let formatNat = d['ethnicity'].split("(")[1]
+                if (typeof formatNat == 'undefined') {
+                    formatNat = 'Unknown'
+                } else {
+                    formatNat = formatNat.substring(0, formatNat.length - 1)
+                    if (!natList.includes(formatNat)) {
+                        formatNat = 'Other'
+                    }
                 }
-                tempData.push({'ethnicity': formatEth})
+                console.log(formatNat)
+                tempData.push({'nationality': formatNat})
             }
         )
         setData(tempData)
@@ -25,17 +31,17 @@ function EthnicityDistribution() {
     useEffect(() => {
         if (data.length > 0) {
             var margin = {top: 30, right: 50, bottom: 50, left: 50},
-            width = 600 - margin.left - margin.right,
+            width = 1000 - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
 
-            var svg = d3.select("#ethnicityDistribution")
+            var svg = d3.select("#nationalityDistribution")
                 .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-            var rollup = d3.rollup(data, D => D.length, d => d.ethnicity)
+            var rollup = d3.rollup(data, D => D.length, d => d.nationality)
             rollup = new Map([...rollup.entries()].sort((a, b) => b[1] - a[1]));
 
             var x = d3.scaleBand()
@@ -106,7 +112,7 @@ function EthnicityDistribution() {
                 .style("fill", "white")
                 .style("font-family", "sans-serif")
                 .attr("dy", "1em")
-                .text("Ethnicity");
+                .text("Nationality");
 
             svg.selectAll(".label")
                 .data(rollup)
@@ -125,11 +131,11 @@ function EthnicityDistribution() {
 
     return (
         <>
-            <h5 className='spotifyGreen'>Distribution of Artist Ethnicity</h5>
-            <p>The ethnicity of the main artist of the track.</p>
-            <div id="ethnicityDistribution"></div>
+            <h5 className='spotifyGreen'>Distribution of Artist Nationality</h5>
+            <p>The nationality of the main artist of the track.</p>
+            <div id="nationalityDistribution"></div>
         </>
     );
 }
 
-export default EthnicityDistribution;
+export default NationalityDistribution;

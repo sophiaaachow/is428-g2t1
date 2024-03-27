@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import GenderDistribution from '../components/ArtistDemographics/GenderDistribution';
 import EthnicityDistribution from '../components/ArtistDemographics/EthnicityDistribution';
 import tableauLogo from '../images/tableauLogo.png'
+import NationalityDistribution from '../components/ArtistDemographics/NationalityDistribution';
 
 function ArtistDemographics() {
     return (
@@ -31,6 +32,9 @@ function ArtistDemographics() {
                     </Col>
                     <Col className='mb-5'>
                         <EthnicityDistribution />
+                    </Col>
+                    <Col className='mb-5'>
+                        <NationalityDistribution />
                     </Col>
                 </Row>
             </Container>

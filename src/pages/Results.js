@@ -56,7 +56,8 @@ function Results() {
                         <h3 className='spotifyGreen mb-4'>What demographics do top songs' artists belong to?</h3>
                         <ul>
                             <li>Artists that produce top songs tend do be <strong className='spotifyGreen'>male</strong>.</li>
-                            <li>Artists who are <strong className='spotifyGreen'>white</strong> also see more success in producing top songs.</li>
+                            <li><strong className='spotifyGreen'>White</strong> artists also see more success in producing top songs.</li>
+                            <li><strong className='spotifyGreen'>American</strong> artists perform the best in Spotify's top charts.</li>
                         </ul>
                         <h3 className='spotifyGreen mt-5 mb-4'>How has consumers' tastes changed over time?</h3>
                         <ul>
