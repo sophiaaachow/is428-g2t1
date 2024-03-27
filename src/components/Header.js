@@ -20,7 +20,7 @@ function Header() {
                     <Nav.Link href="/about" className='text-white'>About</Nav.Link>
                     <NavDropdown title={<span className="text-white">Charts</span>} data-bs-theme="dark">
                         <NavDropdown.Item href="/audio-features">Audio Features</NavDropdown.Item>
-                        <NavDropdown.Item href="/gender-and-ethnicity">Gender & Ethnicity</NavDropdown.Item>
+                        <NavDropdown.Item href="/artist-demographics">Artist Demographics</NavDropdown.Item>
                         <NavDropdown.Item href="/time-series">Time Series</NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link href="/results" className='text-white'>Results</Nav.Link>

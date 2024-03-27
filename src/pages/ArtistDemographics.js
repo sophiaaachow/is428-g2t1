@@ -5,18 +5,18 @@ import { TypeAnimation } from 'react-type-animation';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import GenderDistribution from '../components/GenderEthnicity/GenderDistribution';
-import EthnicityDistribution from '../components/GenderEthnicity/EthnicityDistribution';
+import GenderDistribution from '../components/ArtistDemographics/GenderDistribution';
+import EthnicityDistribution from '../components/ArtistDemographics/EthnicityDistribution';
 import tableauLogo from '../images/tableauLogo.png'
 
-function GenderEthnicity() {
+function ArtistDemographics() {
     return (
         <>
             <Header />
             <Container fluid className='mainBg text-center'>
                 <TypeAnimation
                     sequence={[
-                        'Gender & Ethnicity',
+                        'Artist Demographics',
                     ]}
                     wrapper='h1'
                     speed={50}
@@ -39,4 +39,4 @@ function GenderEthnicity() {
     );
 }
 
-export default GenderEthnicity;
+export default ArtistDemographics;

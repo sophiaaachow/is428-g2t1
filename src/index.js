@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import About from './pages/About';
 import AudioFeatures from './pages/AudioFeatures';
-import GenderEthnicity from './pages/GenderEthnicity';
+import ArtistDemographics from './pages/ArtistDemographics';
 import TimeSeries from './pages/TimeSeries';
 import Results from './pages/Results';
 import Error from './pages/Error';
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: '/gender-and-ethnicity',
-    element: <GenderEthnicity />,
+    path: '/artist-demographics',
+    element: <ArtistDemographics />,
     errorElement: <Error />,
   },
   {

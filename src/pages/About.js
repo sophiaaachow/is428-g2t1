@@ -79,7 +79,7 @@ function About() {
                                 <a href='https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023' target='_blank' rel="noreferrer" className='spotifyGreen'>Most Streamed Spotify Songs 2023</a>
                                 </li>
                             </ol>
-                            <p>We also utilised <a href='https://openai.com/chatgpt' target='_blank' rel="noreferrer" className='spotifyGreen'>ChatGPT</a> to generate additional information, such as artist gender and ethnicity.</p>
+                            <p>We also utilised <a href='https://openai.com/chatgpt' target='_blank' rel="noreferrer" className='spotifyGreen'>ChatGPT</a> to generate additional information on the songs' artists.</p>
                         </Col>
                     </Row>
                 <hr />

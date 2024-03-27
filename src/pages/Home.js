@@ -37,8 +37,8 @@ function Home() {
                     <Button variant="dark" size="lg" href='/audio-features'>
                       Audio Features
                     </Button>
-                    <Button variant="success" size="lg" href='/gender-and-ethnicity'>
-                      Gender & Ethnicity
+                    <Button variant="success" size="lg" href='/artist-demographics'>
+                      Artist Demographics
                     </Button>
                     <Button variant="dark" size="lg" href='/time-series'>
                       Time Series
