@@ -32,3 +32,23 @@
     background-color: #1DB954;
     color: black;
 }
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+  }
+  
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 140px;
+    height: 70px;
+    padding: 5px;
+    font: 16px sans-serif;
+    background: #fff;
+    color: #000;
+    border: 0px;
+    border-radius: 8px;  
+    pointer-events: none;
+}
