@@ -7,7 +7,7 @@
 ## Our Goal
 This project aims to unravel the complexities behind chart-toppers on Spotify, shedding light on the multifaceted dynamics driving music trends in the digital age we live in today.
 
-Visit the website [here](https://github.com/sophiaaachow/is428-g2t1).
+Visit the website [here](https://is428-va.vercel.app/).
 
 <hr />
 
